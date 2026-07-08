@@ -516,12 +516,18 @@ def get_staff():
 
 
 if __name__ == "__main__":
-    # Create tables on application start
+    # Create database tables when the application starts
     print("Initializing database tables...")
     init_db()
     print("Database ready.")
-    
-    # Run the server on port 5000 for standard local Python services
-    port = int(os.getenv("PORT", 5000))
+
+    # Render automatically provides the PORT environment variable
+    port = int(os.environ.get("PORT", 5000))
+
     print(f"Starting Flask API Server on port {port}...")
-    app.run(host="0.0.0.0", port=port, debug=True)
+
+    app.run(
+        host="0.0.0.0",
+        port=port,
+        debug=False
+    )
